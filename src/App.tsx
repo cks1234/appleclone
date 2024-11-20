@@ -8,16 +8,35 @@ function App() {
       <Navbar />
       
       <main className="pt-[44px] flex flex-col gap-3">
-        <PromoSection
-          title="iPhone 15 Pro"
-          subtitle="Titanium. So strong. So light. So Pro."
-          bgImage="https://www.apple.com/v/home/bv/images/heroes/holiday-2024/hero_holiday_2024__bbs03706zple_medium.jpg"
-          cta={{
-            primary: "Learn more",
-            secondary: "Buy"
-          }}
-          size="large"
-        />
+        <section className="relative w-full h-[692px] overflow-hidden">
+          <video 
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay 
+            muted 
+            playsInline
+          >
+            <source 
+              src="https://www.apple.com/105/media/us/home/2024/4c5981b4-638c-43b6-8f74-212757545abb/anim/bow/largetall.mp4" 
+              type="video/mp4" 
+            />
+          </video>
+          <div className="relative z-10 flex flex-col items-center pt-[452px]">
+            <h2 className="text-[56px] font-semibold text-black">
+              Gift magic.
+            </h2>
+            <h3 className="text-[28px] mt-1 text-black">
+              Make their holiday wish come true.
+            </h3>
+            <div className="flex gap-4 mt-4">
+              <a
+                href="#"
+                className="px-5 py-3 rounded-full text-[17px] font-medium bg-white text-[#1d1d1f] hover:bg-[#f5f5f7] transition-colors"
+              >
+                Shop gifts
+              </a>
+            </div>
+          </div>
+        </section>
         
         <PromoSection
           title="iPhone 15 Pro"
