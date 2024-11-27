@@ -1,63 +1,67 @@
+import Button from './Button';
+
 interface PromoSectionProps {
-  title: string;
-  subtitle?: string;
+  title: string | React.ReactNode;
+  subtitle?: string | React.ReactNode;
   bgImage: string;
-  textColor?: 'dark' | 'light';
+  size?: 'large' | 'small';
+  textColor?: string;
+  paddingTop?: string;
   cta?: {
     primary: string;
     secondary?: string;
   };
-  size?: 'large' | 'small';
 }
 
 export default function PromoSection({
   title,
   subtitle,
   bgImage,
-  textColor = 'light',
-  cta,
   size = 'large',
+  textColor = 'white',
+  paddingTop = '52px',
+  cta,
 }: PromoSectionProps) {
   return (
     <section 
       className={`w-full bg-cover bg-center ${size === 'large' ? 'h-[692px]' : 'h-[580px]'}`}
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <div className="flex flex-col items-center pt-[52px]">
-        <h2 className={`text-[56px] font-semibold ${textColor === 'dark' ? 'text-[#1d1d1f]' : 'text-white'}`}>
-          {title}
-        </h2>
-        {subtitle && (
-          <h3 className={`text-[28px] mt-1 ${textColor === 'dark' ? 'text-[#1d1d1f]' : 'text-white'}`}>
-            {subtitle}
-          </h3>
-        )}
-        {cta && (
-          <div className="flex gap-4 mt-4">
-            <a
-              href="#"
-              className={`px-5 py-3 rounded-full text-[17px] font-medium transition-colors
-                ${textColor === 'dark' 
-                  ? 'bg-[#1d1d1f] text-white hover:bg-[#333]' 
-                  : 'bg-white text-[#1d1d1f] hover:bg-[#f5f5f7]'
-                }`}
+      <div className="relative w-full h-full">
+        <div className="flex flex-col items-center" style={{ paddingTop }}>
+          <h2 
+            className={`${size === 'large' ? 'text-[56px]' : 'text-[40px]'} font-semibold flex items-center gap-2`}
+            style={{ color: textColor }}
+          >
+            {title}
+          </h2>
+          {subtitle && (
+            <h3 
+            className={`${size === 'large' ? 'text-[28px]' : 'text-[24px]'} text-center`}
+            style={{ color: textColor }}
             >
-              {cta.primary}
-            </a>
-            {cta.secondary && (
-              <a
+              {subtitle}
+            </h3>
+          )}
+          {cta && (
+            <div className={`flex gap-4`} style={{ marginTop: size === 'large' ? '350px' : '16px' }}>
+              <Button
                 href="#"
-                className={`px-5 py-3 rounded-full text-[17px] font-medium transition-colors
-                  ${textColor === 'dark'
-                    ? 'bg-white text-[#1d1d1f] hover:bg-[#f5f5f7]'
-                    : 'bg-[#1d1d1f] text-white hover:bg-[#333]'
-                  }`}
+                variant="primary"
               >
-                {cta.secondary}
-              </a>
-            )}
-          </div>
-        )}
+                {cta.primary}
+              </Button>
+              {cta.secondary && (
+                <Button
+                  href="#"
+                  variant="secondary"
+                >
+                  {cta.secondary}
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
